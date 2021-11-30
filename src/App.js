@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  Navigate,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -31,8 +36,8 @@ function App() {
           setUserInformation({});
           setLoggedIn(false);
         }
+        setLoading(false);
       });
-      setLoading(false);
     }
   }, [appInitialized]);
 
@@ -48,7 +53,7 @@ function App() {
       });
   }
 
-  if (loading) return null;
+  if (loading || !appInitialized) return null;
 
   return (
     <>
@@ -74,7 +79,7 @@ function App() {
                   setUserInformation={setUserInformation}
                 />
               ) : (
-                <></>
+                <Navigate to="/" />
               )
             }
           />
@@ -87,7 +92,7 @@ function App() {
                   setUserInformation={setUserInformation}
                 />
               ) : (
-                <></>
+                <Navigate to="/" />
               )
             }
           />
