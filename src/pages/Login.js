@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import LoginForm from "../components/LoginForm";
 
-function CreateUser({ setLoggedIn, setUserInformation }) {
-  const signUpUser = useCallback(
+function Login({ setLoggedIn, setUserInformation }) {
+  const loginUser = useCallback(
     (e) => {
       e.preventDefault();
       const email = e.currentTarget.email.value;
       const password = e.currentTarget.password.value;
-
-      console.log({ email, password });
 
       const auth = getAuth();
 
@@ -33,9 +32,12 @@ function CreateUser({ setLoggedIn, setUserInformation }) {
     [setLoggedIn, setUserInformation]
   );
 
-  function Login() {
-    return <div></div>;
-  }
+  return (
+    <div>
+      <h1>Login</h1>
+      <LoginForm loginUser={loginUser} />
+    </div>
+  );
 }
 
 export default Login;

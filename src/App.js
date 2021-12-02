@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import "./App.css";
 import firebaseConfig from "./components/FirebaseConfig";
 import Login from "./pages/Login";
@@ -86,13 +86,13 @@ function App() {
           <Route
             path="/"
             element={
-              !LoggedIn ? (
+              !loggedIn ? (
                 <Login
                   setLoggedIn={setLoggedIn}
                   setUserInformation={setUserInformation}
                 />
               ) : (
-                <Navigate to="/" />
+                <Navigate to={`/user/${userInformation.uid}`} />
               )
             }
           />

@@ -26,11 +26,10 @@
   padding-right: 0;
 }
 
-.PageWrapper {
-}
-
 .Form form {
   display: flex;
+  flex-direction: column;
+  max-width: 500px;
 }
 
 .Form input {

@@ -1,6 +1,6 @@
 import React from "react";
 
-function loginForm({ loginUser }) {
+function LoginForm({ loginUser }) {
   return (
     <div className="Form">
       <h2> Login Form</h2>
